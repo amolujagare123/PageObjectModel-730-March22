@@ -5,31 +5,47 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import pages.AddClient;
 import pages.Login;
 import pages.Menu;
+import utility.DoLogin;
 
-public class AddClientTest {
-    WebDriver driver;
-    @BeforeClass
-    public void doLogin()
-    {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("http://[::1]/ip/index.php/sessions/login");
+import java.text.ParseException;
 
-        Login login = new Login(driver);
-
-        login.setTxtUsername("amolujagare@gmail.com");
-        login.setTxtPassword("admin123");
-        login.clickLogin();
-    }
+public class AddClientTest extends DoLogin {
 
 
     @Test
-    public void addClientTest()
-    {
+    public void addClientTest() throws ParseException {
         Menu menu = new Menu(driver);
         menu.clickAddClient();
+
+        AddClient addClient = new AddClient(driver);
+
+        //addClient.setlanguage("Spanish");
+       // addClient.setCountry("Nepal");
+      //  addClient.setGender("Female");
+
+
+        addClient.setDate("12/10/2020"); // dd/MM/yyyy
+
+       /* addClient.setClientName("Sonali");
+        addClient.setClientSurname("Bhagat");
+        addClient.setClientAddress1("xyz");
+        addClient.setClientAddress2("pqr");
+        addClient.setClientCity("Pune");
+        addClient.setClientState("Maharastra");
+        addClient.setClientZip("787878");
+        addClient.setClientPhone("77878787");
+        addClient.setClientFax("898989");
+        addClient.setClientMobile("787878");
+        addClient.setClientEmail("a@b.com");
+        addClient.setClientWeb("www.xyz.com");
+        addClient.setClientVat("898989");
+        addClient.setClientTax("787878");
+
+        addClient.clickSave();*/
+
+
     }
 }

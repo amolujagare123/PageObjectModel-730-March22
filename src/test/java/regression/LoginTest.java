@@ -5,21 +5,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 import pages.Login;
+import utility.OpenUrl;
 
-public class LoginTest {
+import java.io.IOException;
+
+import static util.ConfigReader.*;
+
+public class LoginTest extends OpenUrl {
 
     @Test
-    public void loginTest()
-    {
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("http://[::1]/ip/index.php/sessions/login");
+    public void loginTest() throws IOException {
 
         Login login = new Login(driver);
 
-        login.setTxtUsername("amolujagare@gmail.com");
-        login.setTxtPassword("admin123");
+        login.setTxtUsername(getUsername());
+        login.setTxtPassword(getPassword());
         login.clickLogin();
     }
 }
