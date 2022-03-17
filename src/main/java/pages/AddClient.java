@@ -3,6 +3,7 @@ package pages;
 import org.joda.time.DateTime;
 import org.joda.time.Months;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -177,6 +178,15 @@ public class AddClient {
     @FindBy (xpath="//input[@id='client_birthdate']")
     WebElement birthDate;
 
+    public void setDate2(String dateStr)
+    {
+       // birthDate.sendKeys(dateStr);
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].setAttribute('value','"+dateStr+"')",birthDate);
+
+    }
+
     public void setDate(String dateStr) throws ParseException  // dd/MM/yyyy
     {
         birthDate.click();
@@ -213,6 +223,12 @@ public class AddClient {
                 driver.findElement(By.xpath("//th[@class='prev']")).click(); // click prev
         }
 
+
+        //String currentDayStr = new SimpleDateFormat("d").format(setDate);
+        String currentDayStr = new SimpleDateFormat("dd").format(setDate);
+
+        int day = Integer.parseInt(currentDayStr);
+        driver.findElement(By.xpath("//td[normalize-space()='"+day+"' and @class='day']")).click();
 
     }
 

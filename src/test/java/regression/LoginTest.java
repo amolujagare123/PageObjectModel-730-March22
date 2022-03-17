@@ -3,6 +3,7 @@ package regression;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.Login;
 import utility.OpenUrl;
@@ -10,6 +11,7 @@ import utility.OpenUrl;
 import java.io.IOException;
 
 import static util.ConfigReader.*;
+import static utility.DataProviderUtil.getMyDataXLSX;
 
 public class LoginTest extends OpenUrl {
 
@@ -22,4 +24,5 @@ public class LoginTest extends OpenUrl {
         login.setTxtPassword(getPassword());
         login.clickLogin();
     }
+
 }
