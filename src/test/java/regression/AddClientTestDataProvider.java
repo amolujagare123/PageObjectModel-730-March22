@@ -1,5 +1,7 @@
 package regression;
 
+import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.AddClient;
@@ -20,7 +22,8 @@ public class AddClientTestDataProvider extends DoLogin {
                               String state,String zip,String country,
                               String gender,String date,String phone,
                               String fax,String mobile,String email,
-                              String web,String vat,String tax) throws ParseException {
+                              String web,String vat,String tax,String expected , String xpthActual) throws ParseException {
+        driver.navigate().refresh();
         Menu menu = new Menu(driver);
         menu.clickAddClient();
 
@@ -48,6 +51,15 @@ public class AddClientTestDataProvider extends DoLogin {
         addClient.clickSave();
 
 
+        String actual ="";
+        try {
+             actual = driver.findElement(By.xpath(xpthActual)).getText();
+        }
+        catch (Exception e)
+        {
+
+        }
+        Assert.assertEquals(actual,expected,"wrong output");
     }
 
     @DataProvider
