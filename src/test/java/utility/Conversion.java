@@ -1,5 +1,9 @@
 package utility;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Conversion {
 
     public static String getGender(String dbGender)
@@ -32,4 +36,17 @@ public class Conversion {
 
         return countryFullForm;
     }
+
+    public static String convertDate(String dbDate) throws ParseException // yyyy-dd-MM
+    {
+        // 1. convert string to date --> parse  // yyyy-dd-MM
+
+        Date date = new SimpleDateFormat("yyyy-dd-MM").parse(dbDate);
+
+        // 2. convert Date to String --> format  // dd/MM/yyyy
+
+       return new SimpleDateFormat("dd/MM/yyyy").format(date);
+
+    }
+
 }

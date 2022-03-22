@@ -14,8 +14,7 @@ import java.sql.*;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-import static utility.Conversion.getCountry;
-import static utility.Conversion.getGender;
+import static utility.Conversion.*;
 import static utility.DataProviderUtil.getMyDataXLSX;
 
 public class AddClientTestDataProvider extends DoLogin {
@@ -111,7 +110,8 @@ public class AddClientTestDataProvider extends DoLogin {
             actual.add(genderFull);
 
 
-            actual.add(rs.getString("client_birthdate"));
+            actual.add(convertDate(rs.getString("client_birthdate")));
+
             actual.add(rs.getString("client_phone"));
             actual.add(rs.getString("client_fax"));
             actual.add(rs.getString("client_mobile"));
@@ -124,7 +124,7 @@ public class AddClientTestDataProvider extends DoLogin {
         System.out.println("actual="+actual);
         System.out.println("expected="+expected);
 
-        //   Assert.assertEquals(actual,expected);
+         Assert.assertEquals(actual,expected);
 
     }
 
